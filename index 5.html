@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Баночка Маше от Назара</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f0;
+            color: #333;
+            text-align: center;
+            padding: 30px;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff3399;
+            animation: fadeInDown 1.5s ease-in-out;
+        }
+        button {
+            background-color: #ff3399;
+            border: none;
+            padding: 12px 24px;
+            color: white;
+            font-size: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+        .note {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #444;
+            animation: fadeIn 0.7s ease-in-out;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff66a3;
+            transform: rotate(45deg);
+            animation: float 6s infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff66a3;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>💖 Баночка Маше от Назара 💖</h1>
+    <p>Нажимай на кнопку — и открывай случайную записку ✨</p>
+    <button onclick="showNote()">Открыть записку</button>
+    <div class="note" id="note"></div>
+
+    <script>
+        const notes = [
+            "Ты делаешь мой день светлее одним своим сообщением.",
+            "Я люблю твой смех — он звучит как песня.",
+            "С тобой я стал счастливее, чем когда-либо.",
+            "Ты — мой уют, мой дом, моя радость.",
+            "Я горжусь тем, что ты рядом со мной.",
+            "Ты самая настоящая и невероятная.",
+            "Когда ты улыбаешься — мир становится лучше.",
+            "Ты вдохновляешь меня быть лучше каждый день.",
+            "Я всегда думаю о тебе, даже в самых обычных моментах.",
+            "Ты сделала моё сердце твоим навсегда."
+        ];
+
+        function showNote() {
+            const note = notes[Math.floor(Math.random() * notes.length)];
+            document.getElementById("note").innerText = note;
+        }
+
+        // Создаем анимационные сердечки
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
